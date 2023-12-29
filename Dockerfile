@@ -28,7 +28,7 @@ COPY --from=intermediate /tmp/kustomize_version.txt /tmp/kustomize_version.txt
 #kubectl, kustomize, helm, git, curl 설치
 RUN ARCH_TYPE=$(cat /tmp/arch_type.txt) && \
     KUSTOMIZE_VER=$(cat /tmp/kustomize_version.txt) && \
-    apk --no-cache add curl gettext py3-pip git helm tar && \
+    apk --no-cache add curl gettext py3-pip git helm tar yq && \
     curl -sLO https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv${KUSTOMIZE_VER}/kustomize_v${KUSTOMIZE_VER}_linux_${ARCH_TYPE}.tar.gz && \
     tar xvzf kustomize_v${KUSTOMIZE_VER}_linux_${ARCH_TYPE}.tar.gz && \
     mv kustomize /usr/bin/kustomize && \
@@ -36,5 +36,5 @@ RUN ARCH_TYPE=$(cat /tmp/arch_type.txt) && \
     rm kustomize_v${KUSTOMIZE_VER}_linux_${ARCH_TYPE}.tar.gz && \
     curl -L https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/${ARCH_TYPE}/kubectl -o /usr/bin/kubectl && \
     chmod +x /usr/bin/kubectl && \
-    pip3 install awscli && \
+    pip3 install awscli --break-system-packages && \
     rm -rf /tmp
