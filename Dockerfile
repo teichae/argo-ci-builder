@@ -36,5 +36,8 @@ RUN ARCH_TYPE=$(cat /tmp/arch_type.txt) && \
     rm kustomize_v${KUSTOMIZE_VER}_linux_${ARCH_TYPE}.tar.gz && \
     curl -L https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/${ARCH_TYPE}/kubectl -o /usr/bin/kubectl && \
     chmod +x /usr/bin/kubectl && \
+    curl -sSL -o argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64 && \
+    install -m 555 argocd-linux-amd64 /usr/local/bin/argocd && \
+    rm argocd-linux-amd64 && \    
     pip3 install awscli --break-system-packages && \
     rm -rf /tmp
