@@ -31,7 +31,7 @@ docker build -t argo-ci-builder .
 ## 사용법
 
 ```sh
-#docker 사용 시
+# Docker 사용 시
 docker run -it --rm  ghcr.io/teichae/argo-ci-builder:3.0 sh
 ```
 
