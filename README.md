@@ -32,7 +32,7 @@ docker build -t argo-ci-builder .
 
 ```sh
 # Docker 사용 시
-docker run -it --rm  ghcr.io/teichae/argo-ci-builder:3.0 sh
+docker run -it --rm  ghcr.io/teichae/argo-ci-builder:v3.0 sh
 ```
 
 Bash가 없기 때문에 sh를 사용합니다.
